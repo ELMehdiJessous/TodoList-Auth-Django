@@ -1,0 +1,177 @@
+<!-- <form action="" method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="register">
+    <a href="{% url 'login' %}">login</a>
+</form> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<style>
+/* Reset & Body */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #132440, #3b76d5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Form container */
+form {
+    background-color: #f5f5f5;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 28px;
+}
+
+/* Input groups */
+.input-group {
+    position: relative;
+}
+
+.input-group i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 18px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 12px 12px 42px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #ff4500;
+    box-shadow: 0 0 8px rgba(255,69,0,0.3);
+    outline: none;
+}
+
+/* Submit button */
+input[type="submit"] {
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: #16476A;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #2f83bf;
+    box-shadow: 0 4px 12px rgba(255,69,0,0.3);
+}
+
+/* Link */
+a {
+    text-align: center;
+    color: red;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Error messages */
+.error {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+    text-align: left;
+}
+
+/* Hide Django help text */
+form .helptext {
+    display: none;
+}
+
+/* Responsive */
+@media(max-width: 400px) {
+    form {
+        width: 90%;
+        padding: 30px 20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<form method="post">
+    <h2>Create Account</h2>
+    {% csrf_token %}
+
+    <!-- Username -->
+    <div class="input-group">
+        <i class="fas fa-user"></i>
+        {{ form.username}}
+        {% if form.username.errors %}
+            <div class="error">{{ form.username.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    <!-- Password -->
+    <div class="input-group">
+        <i class="fas fa-lock"></i>
+        {{ form.password1}}
+        {% if form.password1.errors %}
+            <div class="error">{{ form.password1.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="input-group">
+        <i class="fas fa-lock"></i>
+        {{ form.password2}}
+        {% if form.password2.errors %}
+            <div class="error">{{ form.password2.errors|striptags }}</div>
+        {% endif %}
+    </div>
+
+    <input type="submit" value="Register">
+
+    <a href="{% url 'login' %}">Already have an account? Login</a>
+</form>
+
+</body>
+</html>
+
